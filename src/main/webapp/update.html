@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Insert title here</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .form-submit{
+                padding-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Update Users</h1>
+            <form action="EditServlet" method="POST" class="form-submit">
+                <table border="0">
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" name="inputName"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" name="inputPass"/></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="email" name="inputEmail"/></td>
+                    </tr>
+                    <tr>
+                        <td>Country:</td>
+                        <td>
+                            <select>
+                                <option value="vietnam">VietNam</option>
+                                <option value="korea">Korea</option>
+                                <option value="us">US</option>
+                                <option value="switzerland">Switzerland</option>
+                                <option value="canada">Canada</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" name="btn-submit">Edit&Save</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
