@@ -13,28 +13,42 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 padding-bottom: 30px;
             }
         </style>
+        <script>
+            function validateForm() {
+                const name = document.getElementById("inputName").value;
+                const password = document.getElementById("inputPass").value;
+                const email = document.getElementById("inputEmail").value;
+                const country = document.getElementById("inputCountry").value;
+
+                if (!name || !password || !email || !country) {
+                    window.alert("Vui lòng điền vào tất cả các trường");
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </head>
     <body>
         <div>
             <h1>Add New Users</h1>
-            <form action="InsertServlet" method="POST" class="form-submit">
+            <form action="InsertServlet" method="POST" class="form-submit" onsubmit="return validateForm();">
                 <table border="0">
                     <tr>
                         <td>Name:</td>
-                        <td><input type="text" name="inputName" autocomplete="off" autofocus/></td>
+                        <td><input type="text" name="inputName" id="inputName" autocomplete="off" autofocus/></td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td><input type="password" name="inputPass"/></td>
+                        <td><input type="password" name="inputPass" id="inputPass"/></td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td><input type="email" name="inputEmail"/></td>
+                        <td><input type="email" name="inputEmail" id="inputEmail"/></td>
                     </tr>
                     <tr>
                         <td>Country:</td>
                         <td>
-                            <select name="inputCountry">
+                            <select name="inputCountry" id="inputCountry">
                                 <option value="vietnam">VietNam</option>
                                 <option value="korea">Korea</option>
                                 <option value="us">US</option>
@@ -50,5 +64,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </form>
             <a href="ViewServlet">View Users</a>
         </div>
+
     </body>
 </html>

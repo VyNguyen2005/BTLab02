@@ -33,8 +33,8 @@ public class InsertServlet extends HttpServlet {
                 // 1. Nap trinh dieu khien
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 // 2. Thiet lap ket noi
-                String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=demodb";
-                connection = DriverManager.getConnection(connectionURL, "sa", "sa");
+                String connectionURL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=demodb";
+                connection = DriverManager.getConnection(connectionURL, "sa", "123456");
                 // 3. Tao doi tuong thuc hien truy van
                 ps = connection.prepareStatement("insert into users(name, password, email, country) values(?,?,?,?)");
                 ps.setString(1, name);
@@ -43,15 +43,14 @@ public class InsertServlet extends HttpServlet {
                 ps.setString(4, country);
                 // 4. Thi hanh truy van
                 int result = ps.executeUpdate();
-                if(result > 0){
+                if (result > 0) {
                     out.println("Record saved successfully!");
-                }
-                else{
+                } else {
                     out.println("Record saved failed!");
                 }
                 connection.close();
             } catch (Exception e) {
-                System.out.println("Lỗi: " +e.getMessage());
+                System.out.println("Loi: " + e.getMessage());
             }
             request.getRequestDispatcher("insert.html").include(request, response);
             out.println("<!DOCTYPE html>");
