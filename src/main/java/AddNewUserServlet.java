@@ -5,10 +5,6 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,34 +14,40 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nguye
  */
-public class DeleteServlet extends HttpServlet {
+public class AddNewUserServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userId = request.getParameter("id");
         try (PrintWriter out = response.getWriter()) {
-            Connection connection;
-            PreparedStatement ps;
-            ResultSet rs;
-            try {  
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                String connectionURL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=demodb";
-                connection = DriverManager.getConnection(connectionURL, "sa", "sa");
-
-                ps = connection.prepareStatement("delete from users where id = ?");
-                ps.setInt(1, Integer.parseInt(userId));
-                ps.executeUpdate();
-
-                connection.close();
-            } catch (Exception e) {
-                System.out.println("Loi: " + e.getMessage());
-            }
-            request.getRequestDispatcher("ViewServlet").include(request, response);
+            String result = "";
+            
+            result += "<h1>Add New Users</h1>";
+            result += "<form action=InsertServlet method=POST>";
+            result += "<table border=0>";
+            result += "<tr><td>Name:</td><td><input type=text name=inputName autocomplete=off autofocus required autofocus/></td></tr>";
+            result += "<tr><td>Password:</td><td><input type=password name=inputPass id=inputPass required/></td></tr>";
+            result += "<tr><td>Email:</td><td><input type=email name=inputEmail id=inputEmail required/></td></tr>";
+            result += "<tr><td>Country</td>";
+            result += "<td>";
+            result += "<select name=inputCountry>";
+            result += "<option value=vietnam>VietNam</option>";
+            result += "<option value=korea>Korea</option>";
+            result += "<option value=us>US</option>";
+            result += "<option value=switzerland>Switzerland</option>";
+            result += "<option value=canada>Canada</option>";
+            result += "</select>";
+            result += "</td>";
+            result += "</tr>";
+            result += "<tr><td><input type=submit value=Save></td></tr>";
+            result += "</table>";
+            result += "</form>";
+            result += "<a href=ViewServlet>View Users</a>";
+            out.println(result);
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Delete Servlet</title>");
+            out.println("<title>Servlet AddNewUserServlet</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("</body>");
@@ -64,6 +66,7 @@ public class DeleteServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
 
     @Override
     public String getServletInfo() {

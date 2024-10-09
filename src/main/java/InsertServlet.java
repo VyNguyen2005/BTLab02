@@ -46,20 +46,19 @@ public class InsertServlet extends HttpServlet {
                 if (result > 0) {
                     out.println("Record saved successfully!");
                 } else {
-                    out.println("Record saved failed!");
+                    out.println("Record saved failed!");    
                 }
                 connection.close();
             } catch (Exception e) {
                 System.out.println("Loi: " + e.getMessage());
             }
-            request.getRequestDispatcher("insert.html").include(request, response);
+            out.println("<a href=ViewServlet>View Users</a>");
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InsertServlet</title>");
+            out.println("<title>Insert Servlet</title>");
             out.println("</head>");
             out.println("<body>");
-//            out.println("<h1>Servlet InsertServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
