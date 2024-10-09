@@ -32,7 +32,7 @@ public class ViewServlet extends HttpServlet {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=demodb";
-                connection = DriverManager.getConnection(connectionURL, "sa", "123456");
+                connection = DriverManager.getConnection(connectionURL, "sa", "sa");
                 ps = connection.prepareStatement("select * from users");
                 rsUsers = ps.executeQuery();
                 result += "<a href=InsertServlet>Add New User</a>";
@@ -46,8 +46,8 @@ public class ViewServlet extends HttpServlet {
                     result += "<td>" +rsUsers.getString(3) + "</td>";
                     result += "<td>" +rsUsers.getString(4) + "</td>";
                     result += "<td>" +rsUsers.getString(5) + "</td>";
-                    result += "<td><a href=EditServlet>Edit</a></td>";
-                    result += "<td><a href=DeleteServlet>Delete</a></td>";
+                    result += "<td><a href='EditServlet?id=" + rsUsers.getInt(1) + "'>Edit</a></td>";
+                    result += "<td><a href='DeleteServlet?id=" + rsUsers.getInt(1) + "'>Delete</a></td>";
                     result += "</tr>";
                 }
                 out.println(result);

@@ -12,6 +12,10 @@
         <servlet-name>DeleteServlet</servlet-name>
         <servlet-class>DeleteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditServlet</servlet-name>
+        <servlet-class>EditServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InsertServlet</servlet-name>
         <url-pattern>/InsertServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>DeleteServlet</servlet-name>
         <url-pattern>/DeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditServlet</servlet-name>
+        <url-pattern>/EditServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

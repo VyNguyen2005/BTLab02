@@ -34,7 +34,7 @@ public class InsertServlet extends HttpServlet {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 // 2. Thiet lap ket noi
                 String connectionURL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=demodb";
-                connection = DriverManager.getConnection(connectionURL, "sa", "123456");
+                connection = DriverManager.getConnection(connectionURL, "sa", "sa");
                 // 3. Tao doi tuong thuc hien truy van
                 ps = connection.prepareStatement("insert into users(name, password, email, country) values(?,?,?,?)");
                 ps.setString(1, name);
