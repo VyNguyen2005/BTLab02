@@ -29,10 +29,7 @@ public class DeleteServlet extends HttpServlet {
             PreparedStatement ps;
             ResultSet rs;
             try {  
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                String connectionURL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=demodb";
-                connection = DriverManager.getConnection(connectionURL, "sa", "sa");
-
+                connection = DatabaseUtil.getConnection();
                 ps = connection.prepareStatement("delete from users where id = ?");
                 ps.setInt(1, Integer.parseInt(userId));
                 int result = ps.executeUpdate();
@@ -49,7 +46,6 @@ public class DeleteServlet extends HttpServlet {
             } catch (Exception e) {
                 System.out.println("Loi: " + e.getMessage());
             }
-            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");

@@ -28,9 +28,7 @@ public class EditServlet extends HttpServlet {
                 String email = request.getParameter("inputEmail");
                 String country = request.getParameter("inputCountry");
                 try {
-                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                    String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=demodb";
-                    connection = DriverManager.getConnection(connectionURL, "sa", "sa");
+                    connection = DatabaseUtil.getConnection();
                     
                     String updateQuery = "update users set name = ?, password = ?, email = ?, country = ? WHERE id = ?";
                     ps = connection.prepareStatement(updateQuery);
@@ -56,9 +54,7 @@ public class EditServlet extends HttpServlet {
             }
             
             try {
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=demodb";
-                connection = DriverManager.getConnection(connectionURL, "sa", "sa");
+                connection = DatabaseUtil.getConnection();
                 
                 ps = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
                 ps.setInt(1, Integer.parseInt(userId));
