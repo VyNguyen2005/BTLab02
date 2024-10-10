@@ -45,14 +45,16 @@ public class InsertServlet extends HttpServlet {
                 int result = ps.executeUpdate();
                 if (result > 0) {
                     out.println("Record saved successfully!");
+                    request.getRequestDispatcher("insert.html").include(request, response);
                 } else {
-                    out.println("Record saved failed!");    
+                    out.println("Record saved failed!");
+                    request.getRequestDispatcher("insert.html").include(request, response);
+                    return;
                 }
                 connection.close();
             } catch (Exception e) {
                 System.out.println("Loi: " + e.getMessage());
-            }
-            out.println("<a href=ViewServlet>View Users</a>");
+            } 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");

@@ -35,13 +35,21 @@ public class DeleteServlet extends HttpServlet {
 
                 ps = connection.prepareStatement("delete from users where id = ?");
                 ps.setInt(1, Integer.parseInt(userId));
-                ps.executeUpdate();
-
+                int result = ps.executeUpdate();
+                if(result > 0){
+                    out.println("Record deleted successfully!");
+                    request.getRequestDispatcher("ViewServlet").include(request, response);
+                }
+                else{
+                    out.println("Record deleted failed!");
+                    request.getRequestDispatcher("ViewServlet").include(request, response);
+                    return;
+                }
                 connection.close();
             } catch (Exception e) {
                 System.out.println("Loi: " + e.getMessage());
             }
-            request.getRequestDispatcher("ViewServlet").include(request, response);
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");

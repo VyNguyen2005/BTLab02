@@ -35,7 +35,7 @@ public class ViewServlet extends HttpServlet {
                 connection = DriverManager.getConnection(connectionURL, "sa", "sa");
                 ps = connection.prepareStatement("select * from users");
                 rsUsers = ps.executeQuery();
-                result += "<a href=AddNewUserServlet>Add New User</a>";
+                result += "<a href=insert.html>Add New User</a>";
                 result += "<h1 padding-top=10; padding-bottom=10>Users List</h1>";
                 result += "<table border=1>";
                 result += "<tr><td>Id</td><td>Name</td><td>Password</td><td>Email</td><td>Country</td><td>Edit</td><td>Delete</td></tr>";

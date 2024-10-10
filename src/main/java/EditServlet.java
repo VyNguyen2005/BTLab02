@@ -39,13 +39,20 @@ public class EditServlet extends HttpServlet {
                     ps.setString(3, email);
                     ps.setString(4, country);
                     ps.setInt(5, Integer.parseInt(userId));
-                    ps.executeUpdate();
+                    int kq = ps.executeUpdate();
+                    if(kq > 0){
+                        out.println("Record updated successfully!");
+                        request.getRequestDispatcher("ViewServlet").include(request, response);
+                    }
+                    else{
+                        out.println("Record updated failed!");
+                        request.getRequestDispatcher("ViewServlet").include(request, response);
+                        return;
+                    }
                     connection.close();
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
                 }
-                request.getRequestDispatcher("ViewServlet").include(request, response);
-                return;
             }
             
             try {
@@ -87,14 +94,12 @@ public class EditServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
